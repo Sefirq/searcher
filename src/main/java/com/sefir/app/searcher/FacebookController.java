@@ -67,12 +67,28 @@ public class FacebookController {
             model.addAttribute("message", "Please, log in to Facebook before searching for places.");
             return "index";
         }
+        if(search.getCountry().equals("")) {
+            model.addAttribute("state", 0);
+            model.addAttribute("message", "Country field is empty");
+            return "index";
+        }
+        if(search.getCity().equals("")) {
+            model.addAttribute("state", 0);
+            model.addAttribute("message", "City field is empty");
+            return "index";
+        }
+        if(search.getPlace().equals("")) {
+            model.addAttribute("state", 0);
+            model.addAttribute("message", "Place field is empty");
+            return "index";
+        }
         LatLng latLng = getLatitudeAndLongitudeFromCountryAndCity(search.getCountry(), search.getCity());
         if(latLng.lat == ERROR) {
             model.addAttribute("state", 0);
-            model.addAttribute("message", "There were errors in Your country or city.");
+            model.addAttribute("message", "There were errors in your country or city.");
             return "index";
         }
+
         redirectAttributes.addFlashAttribute("latLng", latLng);
         redirectAttributes.addFlashAttribute("search", search);
         redirectAttributes.addFlashAttribute("facebook", facebook);

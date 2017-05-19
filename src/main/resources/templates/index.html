@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    <title>FBSearch</title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">FBSearch</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="fb">Login to Facebook</a></li>
+
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron text-center">
+    <h1>Facebook place searcher</h1>
+    <p>Fill in the form, please</p>
+</div>
+
+<!--/*@thymesVar id="message" type="java.lang.String"*/-->
+<!--/*--><!--@thymesVar id="state" type="java.lang.Integer"--><!--*/-->
+<div th:if="${message != null}" class="row"> <!-- if there is a message in model -->
+    <div class="col-sm-2 col-sm-offset-2">
+        <div class="alert text-center" th:classappend="${state == 1} ? 'alert-success' : 'alert-danger'" >
+            <span id="msg" th:text="${message}"></span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h3>Type country, city and place and click "Submit"!</h3>
+            <!--/*@thymesVar id="searcher" type="com.sefir.app.searcher.Search"*/-->
+            <form class="form-horizontal" method="post" action="fb">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="country">Country:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="country" name="country" placeholder="Enter country"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="city">City:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="city" name="city" placeholder="Enter city"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="place">Place:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="place" name="place"  placeholder="Enter place"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr/>
+
+
+    </div>
+</div>
+</body>
+</html>

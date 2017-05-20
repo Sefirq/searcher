@@ -23,7 +23,7 @@ public class SearchController {
         Facebook facebook = (Facebook)model.asMap().get("facebook");
         LatLng latLng = (LatLng)model.asMap().get("latLng");
         JSONObject jsonToBeReturned = new JSONObject();
-        List<Page> pages = facebook.pageOperations().searchPlaces(search.getPlace(), latLng.lat, latLng.lng, 10000);
+        List<Page> pages = facebook.pageOperations().searchPlaces(search.getPlace(), latLng.lat, latLng.lng, 32000);
         int counter = 1;
         for (Page page: pages) {
             Page pg = facebook.fetchObject(page.getId(), Page.class, "location");
